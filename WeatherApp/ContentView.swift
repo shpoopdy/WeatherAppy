@@ -11,15 +11,28 @@ struct ContentView: View {
   @StateObject var viewModel = WeatherViewModel()
   
   var body: some View {
-    VStack {
-      Text(viewModel.temp)
-        .font(.system(size: 42))
-      Text(viewModel.name)
-        .font(.system(size: 24))
-      Text(viewModel.main)
-        .font(.system(size: 24))
+    NavigationView {
+      VStack {
+        Spacer()
+        VStack {
+          Text(viewModel.temp)
+            .font(.system(size: 42))
+          Image(systemName: "cloud.rain")
+            .resizable()
+            .frame(width: 100, height: 100)
+            .padding(.top)
+        }
+        Spacer()
+        Text(viewModel.name)
+          .font(.title)
+          .bold()
+        Text(viewModel.main)
+          .font(.system(size: 24))
+        Spacer()
+      }
+      .navigationTitle(Text("Weather"))
+      
     }
-    .padding()
   }
 }
 

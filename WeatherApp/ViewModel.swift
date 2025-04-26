@@ -32,7 +32,7 @@ class WeatherViewModel: ObservableObject {
         let model = try JSONDecoder().decode(WeatherModel.self, from: data)
         DispatchQueue.main.async {
           self.name = model.name
-          self.temp = "\(((model.main.temp - 273.15) * 9/5 + 32).rounded())"
+          self.temp = "\(((model.main.temp - 273.15) * 9/5 + 32).rounded())°"
           self.main = model.weather.first?.main ?? "-"
         }
       } catch {
