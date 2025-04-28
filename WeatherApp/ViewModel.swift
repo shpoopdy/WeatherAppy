@@ -18,7 +18,7 @@ class WeatherViewModel: ObservableObject {
   
   func fetchWeather() {
     guard let url = URL(string:
-      "https://api.openweathermap.org/data/2.5/weather?q=arcata,us&appid=b311a0205534b3f90603fce1502a47be"
+      "https://api.openweathermap.org/data/2.5/weather?q=arcata,us&appid={API-KEY}"
     ) else {
       return
     }
@@ -36,7 +36,7 @@ class WeatherViewModel: ObservableObject {
           self.main = model.weather.first?.main ?? "-"
         }
       } catch {
-        print("Ooops")
+        print("No Data Available")
       }
     }
     task.resume()
