@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-  @StateObject var viewModel = WeatherViewModel()
+  //@StateObject var viewModel = WeatherViewModel()
+  @ObservedObject var viewModel: WeatherViewModel
   
   var body: some View {
     NavigationView {
@@ -37,6 +38,6 @@ struct ContentView: View {
 }
 
 #Preview {
-  ContentView()
+  ContentView(viewModel: WeatherViewModel())
     .preferredColorScheme(.dark)
 }

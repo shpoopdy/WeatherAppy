@@ -13,12 +13,14 @@ class WeatherViewModel: ObservableObject {
   @Published var name = "-"
   
     init() {
-      fetchWeather()
+      fetchWeather(for: "Seattle")
     }
   
-  func fetchWeather() {
+  func fetchWeather(for city: String) {
+    let cityQuery = city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? city
+    let apiKey = ""
     guard let url = URL(string:
-      "https://api.openweathermap.org/data/2.5/weather?q=arcata,us&appid={API-KEY}"
+      "https://api.openweathermap.org/data/2.5/weather?q=\(cityQuery),us&appid=\(apiKey)"
     ) else {
       return
     }
