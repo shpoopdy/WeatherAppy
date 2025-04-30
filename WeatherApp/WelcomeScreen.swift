@@ -14,8 +14,10 @@ struct WelcomeScreen: View {
   
   var body: some View {
     NavigationStack {
-      Text("Hello! Enter your city below to see the weather.")
-        .font(.headline)
+      Text("Hello!")
+        .font(.largeTitle)
+        .fontWeight(.black)
+        .padding(.bottom, 42)
       
       TextField("", text: $city)
         .padding()
@@ -26,18 +28,24 @@ struct WelcomeScreen: View {
         )
         .padding()
       
-      Button("Get Weather") {
+      Button(action: {
         viewModel.fetchWeather(for: city)
         self.shouldNavigate = true
-      }
+      }, label: {
+        Text("Get Weather")
+          .fontWeight(.heavy)
+          .font(.title3)
+          .frame(maxWidth: .infinity)
+          .padding()
+          .foregroundStyle(.black)
+          .background(Color.gray)
+          .cornerRadius(40)
+      })
       .navigationDestination(isPresented: $shouldNavigate) {
         ContentView(viewModel: viewModel)
       }
-      
-//      if shouldNavigate {
-//        ContentView(viewModel: viewModel)
-//      }
     }
+    .padding()
   }
 }
 
