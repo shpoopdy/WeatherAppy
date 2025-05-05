@@ -14,20 +14,8 @@ struct WelcomeScreen: View {
   
   var body: some View {
     NavigationStack {
-      Text("Hello!")
-        .font(.largeTitle)
-        .fontWeight(.black)
-        .padding(.bottom, 42)
-      
-      TextField("", text: $city)
-        .padding()
-        .frame(height: 50)
-        .overlay(
-          RoundedRectangle(cornerSize: CGSize(width: 4, height: 4))
-            .stroke(Color.gray, lineWidth: 1)
-        )
-        .padding()
-      
+      SearchView()
+      Spacer()
       Button(action: {
         viewModel.fetchWeather(for: city)
         self.shouldNavigate = true
@@ -44,6 +32,7 @@ struct WelcomeScreen: View {
       .navigationDestination(isPresented: $shouldNavigate) {
         ContentView(viewModel: viewModel)
       }
+      Spacer()
     }
     .padding()
   }
